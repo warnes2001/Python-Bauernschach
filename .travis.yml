@@ -1,0 +1,21 @@
+language: python
+python:
+  - "3.8.2"
+
+notifications:
+  email:
+    on_success: never
+    on_failure: never
+
+install:
+  - pip install pylint==2.4.4
+  - pip install coverage
+
+before_script:
+  - pylint --version
+
+script:
+  - pylint chessgame --exit-zero
+  
+  - coverage run -m unittest discover ./chessgame
+  - coverage report --show-missing
